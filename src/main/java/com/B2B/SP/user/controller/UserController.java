@@ -42,7 +42,7 @@ public class UserController {
     @PutMapping("/")
     public ResponseEntity<UserDto> updateUser(@Validated @RequestBody UserDto userDto){
         UserDto updatedUserDto = userService.update(userDto);
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(updatedUserDto);
     }
 
     @DeleteMapping("/{userId}")

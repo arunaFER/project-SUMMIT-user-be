@@ -22,6 +22,9 @@ public class UserDto {
     @Size(max = 255, message = "Email cannot exceed 255 characters")
     private String userEmail;
 
+    @NotBlank(message = "Password cannot be blank")
+    private String password;
+
     @NotNull(message = "Account type cannot be null")
     @Enumerated
     private User.AccountType accountType;
