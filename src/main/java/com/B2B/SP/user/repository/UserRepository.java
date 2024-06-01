@@ -21,4 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u from User u WHERE u.userId = :userId AND u.accountStatus != 'INACTIVE'")
     Optional<User> findByIdAccountNotInActive(@Param("userId") Long userId);
+
+    @Query("SELECT u from User u WHERE u.userName = :username AND u.accountStatus != 'INACTIVE'")
+    Optional<User> findByUserNameAccountNotInActive(@Param("username") String username);
 }

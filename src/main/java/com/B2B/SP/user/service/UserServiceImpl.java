@@ -67,6 +67,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public UserDto findByUsername(String username) {
+        try{
+            logger.info("Finding user by username: {}", username);
+
+            User user = userRepository.findByUserNameAccountNotInActive(username)
+                    .orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
+
+            return UserMapper.INSTANCE.userToDto(user);
+        }catch (Exception e){
+            logger.error("Exception while finding user by username: {}", username, e);
+            throw e;
+        }
+//        return null;
+    }
+
+    @Override
     @Transactional
     public UserDto save(UserDto userDto) {
         try{
